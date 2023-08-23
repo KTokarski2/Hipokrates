@@ -6,7 +6,7 @@ public class Patient : User
     public virtual List<Prescription> Prescriptions { get; set; } = new List<Prescription>();
     public virtual List<MedicalReferral> Referrals { get; set; } = new List<MedicalReferral>();
     public int PhoneNumber { get; set; }
-    public List<Address> Addresses { get; set; }
+    public virtual List<Address> Addresses { get; set; } = new List<Address>();
     public int Pesel { get; set; }
     public int InsuranceNumber { get; set; }
     public Plan Plan { get; set; }

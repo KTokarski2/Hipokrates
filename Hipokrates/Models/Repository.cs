@@ -14,13 +14,13 @@ public class Repository : DbContext
         
     }
     
-    public virtual DbSet<Address> Addresses { get; set; }
+    public virtual DbSet<Address> Addresses { get; set; } // +
     public virtual DbSet<Consultation> Consultations { get; set; }
     public virtual DbSet<Doctor> Doctors { get; set; }
     public virtual DbSet<MedicalExam> MedicalExams { get; set; }
     public virtual DbSet<MedicalReferral> MedicalReferrals { get; set; }
     public virtual DbSet<Medicament> Medicaments { get; set; }
-    public virtual DbSet<Nurse> Nurses { get; set; }
+    public virtual DbSet<Nurse> Nurses { get; set; } // +
     public virtual DbSet<Patient> Patients { get; set; }
     public virtual DbSet<Prescription> Prescriptions { get; set; }
     public virtual DbSet<PrescriptionMedicament> PrescriptionMedicaments { get; set; }
@@ -30,10 +30,177 @@ public class Repository : DbContext
     public virtual DbSet<Service> Services { get; set; }
     public virtual DbSet<Substance> Substances { get; set; }
     public virtual DbSet<SubstanceMedicament> SubstanceMedicaments { get; set; }
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<User> Users { get; set; } //+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("User_pk");
+            entity.ToTable("User");
+            entity.Property(e => e.FirstName);
+            entity.Property(e => e.LastName);
+            entity.Property(e => e.Email);
+            entity.Property(e => e.Password);
+        });
+
+        modelBuilder.Entity<Nurse>(entity =>
+        {
+            entity.ToTable("Nurse");
+            entity.Property(e => e.BaseSalary)
+                .HasDefaultValue(5000m);
+        });
+
+        modelBuilder.Entity<Patient>(entity =>
+        {
+            entity.ToTable("Patient");
+            entity.Property(e => e.PhoneNumber);
+            entity.Property(e => e.Pesel);
+            entity.Property(e => e.InsuranceNumber);
+            entity.Property(e => e.Plan).HasConversion<string>();
+        });
+
+        modelBuilder.Entity<MedicalReferral>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("MedicalReferral_pk");
+            entity.ToTable("MedicalReferral");
+            entity.Property(e => e.DateOfIssue);
+            entity.Property(e => e.Description);
+
+            entity
+                .HasOne(e => e.Doctor)
+                .WithMany(e => e.Referrals)
+                .HasForeignKey(e => e.IdDoctor)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Doctor_Referral");
+
+            entity
+                .HasOne(e => e.Patient)
+                .WithMany(e => e.Referrals)
+                .HasForeignKey(e => e.IdPatient)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Patient_Referral");
+
+            entity
+                .HasOne(e => e.MedicalExam)
+                .WithMany(e => e.Referrals)
+                .HasForeignKey(e => e.IdMedicalExam)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("MedicalExam_Referral");
+        });
+
+        modelBuilder.Entity<Recommendations>(entity =>
+        {
+            entity.HasKey(e => new {e.Id}).HasName("Recommendations_pk");
+            entity.ToTable("Recommendations");
+            entity.Property(e => e.DrugDosage);
+
+            entity
+                .HasOne(e => e.Patient)
+                .WithMany(e => e.Recommendations)
+                .HasForeignKey(e => e.IdPatient)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Patient_Recommendations");
+
+            entity
+                .HasOne(e => e.Patient)
+                .WithMany(e => e.Recommendations)
+                .HasForeignKey(e => e.IdPatient)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Patient_Recommendations");
+        });
+
+        modelBuilder.Entity<Recommendation>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("Recommendation_pk");
+            entity.ToTable("Recommendation");
+            entity.Property(e => e.Text);
+
+            entity
+                .HasOne(e => e.Recommendations)
+                .WithMany(e => e.Guidelines)
+                .HasForeignKey(e => e.IdRecommendations)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Recommendations_Recommendation");
+        });
+
+        modelBuilder.Entity<Address>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Address_pk");
+            entity.ToTable("Address");
+            entity.Property(e => e.Street);
+            entity.Property(e => e.City);
+            entity.Property(e => e.PostalCode);
+            entity.Property(e => e.Country);
+
+            entity
+                .HasOne(e => e.Patient)
+                .WithMany(e => e.Addresses)
+                .HasForeignKey(e => e.IdPatient)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Patient_Address");
+        });
+
+        modelBuilder.Entity<Doctor>(entity =>
+        {
+            entity.ToTable("Doctor");
+            
+        });
+
+        modelBuilder.Entity<SubstanceMedicament>(entity =>
+        {
+            entity.HasKey(e => new { e.IdSubstance, e.IdMedicament }).HasName("Substance_Medicament_pk");
+            entity.ToTable("Substance_Medicament");
+            entity
+                .HasOne(e => e.Medicament)
+                .WithMany(e => e.SubstancesMedicaments)
+                .HasForeignKey(e => e.IdMedicament)
+                .HasConstraintName("Medicament_SubstanceMedicament");
+
+            entity
+                .HasOne(e => e.Substance)
+                .WithMany(e => e.SubstanceMedicaments)
+                .HasForeignKey(e => e.IdSubstance)
+                .HasConstraintName("Substance_SubstanceMedicament");
+        });
+
+        modelBuilder.Entity<Substance>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("Substance_pk");
+            entity.ToTable("Substance");
+            entity.Property(e => e.Name);
+        });
+
+        modelBuilder.Entity<Specialization>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("Specialization_pk");
+            entity.ToTable("Specialization");
+            entity.Property(e => e.Name);
+
+            entity
+                .HasOne(e => e.Doctor)
+                .WithMany(e => e.Specializations)
+                .HasForeignKey(e => e.IdDoctor)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("Doctor_Specializaton");
+        });
+
+        modelBuilder.Entity<Service>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("Service_pk");
+            entity.ToTable("Service");
+            entity.Property(e => e.Type);
+            entity.Property(e => e.Plan).HasConversion<string>();
+        });
+
+        modelBuilder.Entity<Room>(entity =>
+        {
+            entity.HasKey(e => new { e.Id }).HasName("Room_pk");
+            entity.ToTable("Room");
+            entity.Property(e => e.RoomNumber);
+            entity.Property(e => e.FloorNumber);
+        });
+        
         
     }
 

@@ -1,6 +1,6 @@
 namespace Hipokrates.Models;
 
-public interface Guest
+public interface IGuest
 {
     public List<Service> ViewServices();
     public void CreateConsultation();

@@ -42,12 +42,21 @@ public class Repository : DbContext
             entity.Property(e => e.LastName);
             entity.Property(e => e.Email);
             entity.Property(e => e.Password);
+            entity.UseTptMappingStrategy();
         });
 
         modelBuilder.Entity<Nurse>(entity =>
         {
             entity.ToTable("Nurse");
             entity.Property(e => e.BaseSalary).HasDefaultValue(5000m);
+            
+            modelBuilder.Entity<Nurse>().HasData(
+                new Nurse { Id = 1, FirstName = "Alicja", LastName = "Pielęgniarka", Email = "alicja@example.com", Password = "password" },
+                new Nurse { Id = 2, FirstName = "Bartosz", LastName = "Opiekun", Email = "bartosz@example.com", Password = "password" },
+                new Nurse { Id = 3, FirstName = "Celina", LastName = "Higienistka", Email = "celina@example.com", Password = "password" },
+                new Nurse { Id = 4, FirstName = "Damian", LastName = "Ratowniczy", Email = "damian@example.com", Password = "password" },
+                new Nurse { Id = 5, FirstName = "Eliza", LastName = "Zdrowotna", Email = "eliza@example.com", Password = "password" }
+            );
         });
 
         modelBuilder.Entity<Patient>(entity =>
@@ -57,6 +66,14 @@ public class Repository : DbContext
             entity.Property(e => e.Pesel);
             entity.Property(e => e.InsuranceNumber);
             entity.Property(e => e.Plan).HasConversion<string>();
+            
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient { Id = 6, FirstName = "Filip", LastName = "Pacjent", Email = "filip@example.com", Password = "password", PhoneNumber = 123456789, Pesel = 1234567890, InsuranceNumber = 546646, Plan = Plan.Standard },
+                new Patient { Id = 7, FirstName = "Gabriela", LastName = "Chory", Email = "gabriela@example.com", Password = "password", PhoneNumber = 987654321, Pesel = 987654321, InsuranceNumber = 4564646, Plan = Plan.Standard },
+                new Patient { Id = 8, FirstName = "Hanna", LastName = "Leczenie", Email = "hanna@example.com", Password = "password", PhoneNumber = 543216789, Pesel = 54321678, InsuranceNumber = 453466, Plan = Plan.Premium },
+                new Patient { Id = 9, FirstName = "Igor", LastName = "Wyleczony", Email = "igor@example.com", Password = "password", PhoneNumber = 678901234, Pesel = 6789012, InsuranceNumber = 5436446, Plan = Plan.Standard },
+                new Patient { Id = 10, FirstName = "Janina", LastName = "Badanie", Email = "janina@example.com", Password = "password", PhoneNumber = 234567890, Pesel = 23456789, InsuranceNumber = 45435456, Plan = Plan.Standard }
+            );
         });
 
         modelBuilder.Entity<MedicalReferral>(entity =>
@@ -145,6 +162,14 @@ public class Repository : DbContext
             entity.ToTable("Doctor");
             entity.Property(e => e.LicenseNumber);
             entity.Property(e => e.BaseSalary).HasDefaultValue(8000m);
+            
+            modelBuilder.Entity<Doctor>().HasData(
+                new Doctor { Id = 11, FirstName = "Kamil", LastName = "Lekarz", Email = "kamil@example.com", Password = "password", LicenseNumber = 54546565, BaseSalary = 10000m },
+                new Doctor { Id = 12, FirstName = "Lena", LastName = "Medycyna", Email = "lena@example.com", Password = "password", LicenseNumber = 43554545, BaseSalary = 12000m },
+                new Doctor { Id = 13, FirstName = "Marek", LastName = "Chirurg", Email = "marek@example.com", Password = "password", LicenseNumber = 43545456, BaseSalary = 15000m },
+                new Doctor { Id = 14, FirstName = "Natalia", LastName = "Specjalista", Email = "natalia@example.com", Password = "password", LicenseNumber = 4546466, BaseSalary = 13000m },
+                new Doctor { Id = 15, FirstName = "Oskar", LastName = "Ortopeda", Email = "oskar@example.com", Password = "password", LicenseNumber = 45464664, BaseSalary = 14000m }
+            );
         });
 
         modelBuilder.Entity<SubstanceMedicament>(entity =>

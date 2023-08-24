@@ -1,7 +1,14 @@
+using Hipokrates.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Repository>(options =>
+{
+    options.UseMySQL("server=localhost;port=3309;database=default_schema;user=user;password=user");
+});
 
 var app = builder.Build();
 

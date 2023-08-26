@@ -10,7 +10,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: hipokrates_database
+      MYSQL_DATABASE: default_schema
     volumes:
       - "mysqldata:/var/lib/mysql"
 

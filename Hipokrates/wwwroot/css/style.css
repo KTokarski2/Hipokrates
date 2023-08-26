@@ -1,0 +1,168 @@
+html {
+    background-image: url("../assets/doctors.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+body {
+    min-width: 600px;
+}
+
+header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right {
+    display: inline-block;
+}
+
+.header-right button {
+    display: inline-block;
+    width: 100px;
+
+}
+
+nav {
+    background-color: #0C596B;
+    margin-top: 0px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li a {
+    display: inline-block;
+    height: 25px;
+    width: 150px;
+    margin: 8px;
+    border-radius: 15px;
+    background-color: #9FD7F8;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: black;
+}
+
+main {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 35px;
+    border: solid black 1px;
+    border-radius: 15px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    background-color: #52B788;
+}
+
+.header-button:hover {
+    background-color: chartreuse;
+}
+
+.consultation-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+    border-radius: 15px;
+    width: 40rem;
+    height: 250px;
+    background-color: #52B788;
+}
+
+.consultation-text {
+    color: white;
+}
+
+.consultation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+    border: solid black 1px;
+    border-radius: 15px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    background-color: #9FD7F8;
+}
+
+.consultation-button:hover {
+    background-color: white;
+}
+
+.login-form-div {
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-input {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 40px;
+    border: solid black 2px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.login-form input {
+
+
+}
+
+.form-buttons {
+    margin-top: 10px;
+}
+
+.form-button-login {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 40px;
+    border: solid black 2px;
+    border-radius: 15px;
+    background-color: #52B788;
+}
+
+.form-button-login:hover {
+    background-color: chartreuse;
+}
+

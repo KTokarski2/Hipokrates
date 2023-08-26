@@ -1,4 +1,5 @@
 using Hipokrates.Models;
+using Hipokrates.Services.AuthenticationService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,11 @@ builder.Services.AddDbContext<Repository>(options =>
 {
     options.UseMySQL("server=localhost;port=3309;database=default_schema;user=user;password=user");
 });
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IConsultationService, ConsultationService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -22,6 +28,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 

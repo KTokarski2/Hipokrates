@@ -1,12 +1,16 @@
 {
   "Files": [
     {
-      "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/scopedcss/projectbundle/Hipokrates.bundle.scp.css",
-      "PackagePath": "staticwebassets/Hipokrates.bundle.scp.css"
+      "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/wwwroot/assets/doctors.jpg",
+      "PackagePath": "staticwebassets/assets/doctors.jpg"
     },
     {
-      "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/wwwroot/css/site.css",
-      "PackagePath": "staticwebassets/css/site.css"
+      "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/wwwroot/assets/logo.png",
+      "PackagePath": "staticwebassets/assets/logo.png"
+    },
+    {
+      "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/wwwroot/css/style.css",
+      "PackagePath": "staticwebassets/css/style.css"
     },
     {
       "Id": "/home/fedora/RiderProjects/Hipokrates/Hipokrates/wwwroot/favicon.ico",

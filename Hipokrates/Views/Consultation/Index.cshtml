@@ -1,18 +1,23 @@
-@model TModel
-
+@using Hipokrates.Models
+@model List<Service>
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<main>
+    <div class="login-form-div">
+        <form class="login-form" method="post" action="">
+            <select class="form-input" name="Service" id="Service">
+                <option value="" selected> -- Wybierz usługę -- </option>
+                @{
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <option value="@i">@Model[i].Name</option>
+                    }
+                }
+            </select>
+            <div class="form-buttons">
+                <input class="form-button-login" type="submit" value="Zaloguj się">
+            </div>
+        </form>
+    </div>
+</main>

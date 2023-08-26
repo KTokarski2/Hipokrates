@@ -1,6 +1,8 @@
+using Hipokrates.DTOs.Register;
+
 namespace Hipokrates.Services.AuthenticationService;
 
-public class IRegisterService
+public interface IRegisterService
 {
-    
+    public Task Register(RegisterDTO dto);
 }

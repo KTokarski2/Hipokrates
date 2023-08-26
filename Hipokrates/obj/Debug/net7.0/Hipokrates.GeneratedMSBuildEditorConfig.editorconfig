@@ -16,26 +16,34 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/fedora/RiderProjects/Hipokrates/Hipokrates
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Consultation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3VsdGF0aW9uL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Patient/ConsultationDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF0aWVudC9Db25zdWx0YXRpb25EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF0aWVudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Register/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0ZXIvUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Services/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZXMvTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/fedora/RiderProjects/Hipokrates/Hipokrates/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-itksaq1q17
+build_metadata.AdditionalFiles.CssScope = 

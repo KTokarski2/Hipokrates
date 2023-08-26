@@ -166,3 +166,79 @@ main {
     background-color: chartreuse;
 }
 
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%; /* Możesz dostosować szerokość tabeli według potrzeb */
+    text-align: left;
+    margin: 20px 0;
+    background-color: white;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table th {
+    background-color: #0C596B;
+    color: white;
+    text-align: center;
+}
+
+/* Jeśli chcesz, aby wiersze były podświetlane przy najechaniu myszą: */
+table tr:hover {
+    background-color: #52B788;
+}
+
+table td:last-child {
+    text-align: center;
+}
+
+.icon-link {
+    text-decoration: none; /* Usuwa podkreślenie */
+    color: inherit; /* Używa dziedziczonego koloru tekstu */
+}
+
+.details-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #BBDEFB;
+    width: 80%;
+    height: 70%;
+    border-radius: 15px;
+}
+
+.header-div {
+    width: 100%;
+    height: 10%;
+    background-color: #0C596B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 15px 15px 0 0 ;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.custom-button-properties {
+    margin-bottom: 20px;
+}
+

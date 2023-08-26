@@ -1,4 +1,6 @@
+using Hipokrates.DTOs.Login;
 using Hipokrates.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hipokrates.Services.AuthenticationService;
@@ -13,13 +15,10 @@ public class AuthenticationService : IAuthenticationService
     }
 
 
-    public Task<User> LogIn(string email, string password)
+    public async Task<Patient?> LogIn(LoginDTO dto)
     {
-        throw new NotImplementedException();
+        return await _repository.Patients.FirstOrDefaultAsync(u =>
+            u.Email.Equals(dto.Email) && u.Password.Equals(dto.Password));
     }
-
-    public async Task<bool> FindUser(string email, string password)
-    {
-        return await _repository.Users.AnyAsync(u => u.Email.Equals(email) && u.Password.Equals(password));
-    }
+    
 }

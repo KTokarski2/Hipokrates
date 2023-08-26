@@ -1,18 +1,18 @@
-@model TModel
-
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<main>
+    <div class="login-form-div">
+        <form class="login-form" method="post" action="@Url.Action("Register", "Register")">
+            <input class="form-input" type="email" name="Email" id="email" placeholder="adres email" required>
+            <input class="form-input" type="text" name="FirstName" id="firstName" placeholder="imię" required>
+            <input class="form-input" type="text" name="LastName" id="lastName" placeholder="nazwisko" required>
+            <input class="form-input" type="text" name="Pesel" id="pesel" placeholder="pesel" required>
+            <input class="form-input" type="password" name="Password" id="password" placeholder="hasło" required>
+            <input class="form-input" type="text" name="InsuranceNumber" id="insuranceNumber" placeholder="numer ubezpieczenia" required>
+            <div class="form-buttons">
+                <input class="form-button-login" type="submit" value="Zarejestruj się">
+            </div>
+        </form>
+    </div>
+</main>

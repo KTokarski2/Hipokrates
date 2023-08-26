@@ -1,18 +1,32 @@
-@model TModel
+@model List<Hipokrates.DTOs.Patient.ConsultationDTO>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<main>
+    <div class="table-container"> <!-- login-from-div -->
+        <table>
+                <thead>
+                    <tr>
+                        <th>Usługa</th>
+                        <th>Data</th>
+                        <th>Godzina</th>
+                        <th>Szczegóły</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @{
+                    foreach (var con in Model)
+                    {
+                        <tr>
+                            <td>@con.ServiceName</td>
+                            <td>@con.Date</td>
+                            <td>@con.Time</td>
+                            <td><a href="@Url.Action("Details", "Patient", new {Id = con.Id})" class="icon-link"><span class="material-symbols-outlined">info</span></a></td>
+                        </tr>
+                    }
+                }
+                </tbody>
+        </table>
+    </div>
+</main>

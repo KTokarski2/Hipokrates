@@ -49,13 +49,9 @@ public class Repository : DbContext
         {
             entity.ToTable("Nurse");
             entity.Property(e => e.BaseSalary).HasDefaultValue(5000m);
-            
+
             modelBuilder.Entity<Nurse>().HasData(
-                new Nurse { Id = 1, FirstName = "Alicja", LastName = "Pielęgniarka", Email = "alicja@example.com", Password = "password" },
-                new Nurse { Id = 2, FirstName = "Bartosz", LastName = "Opiekun", Email = "bartosz@example.com", Password = "password" },
-                new Nurse { Id = 3, FirstName = "Celina", LastName = "Higienistka", Email = "celina@example.com", Password = "password" },
-                new Nurse { Id = 4, FirstName = "Damian", LastName = "Ratowniczy", Email = "damian@example.com", Password = "password" },
-                new Nurse { Id = 5, FirstName = "Eliza", LastName = "Zdrowotna", Email = "eliza@example.com", Password = "password" }
+                new Nurse {Id = 1, FirstName = "Anna", LastName = "Nowak", Email = "a.nowak@hipokrates.pl", Password = "12345", BaseSalary = 5000m}
             );
         });
 
@@ -66,13 +62,19 @@ public class Repository : DbContext
             entity.Property(e => e.Pesel);
             entity.Property(e => e.InsuranceNumber);
             entity.Property(e => e.Plan).HasConversion<string>();
-            
+
             modelBuilder.Entity<Patient>().HasData(
-                new Patient { Id = 6, FirstName = "Filip", LastName = "Pacjent", Email = "filip@example.com", Password = "password", PhoneNumber = 123456789, Pesel = 1234567890, InsuranceNumber = 546646, Plan = Plan.Standard },
-                new Patient { Id = 7, FirstName = "Gabriela", LastName = "Chory", Email = "gabriela@example.com", Password = "password", PhoneNumber = 987654321, Pesel = 987654321, InsuranceNumber = 4564646, Plan = Plan.Standard },
-                new Patient { Id = 8, FirstName = "Hanna", LastName = "Leczenie", Email = "hanna@example.com", Password = "password", PhoneNumber = 543216789, Pesel = 54321678, InsuranceNumber = 453466, Plan = Plan.Premium },
-                new Patient { Id = 9, FirstName = "Igor", LastName = "Wyleczony", Email = "igor@example.com", Password = "password", PhoneNumber = 678901234, Pesel = 6789012, InsuranceNumber = 5436446, Plan = Plan.Standard },
-                new Patient { Id = 10, FirstName = "Janina", LastName = "Badanie", Email = "janina@example.com", Password = "password", PhoneNumber = 234567890, Pesel = 23456789, InsuranceNumber = 45435456, Plan = Plan.Standard }
+                new Patient
+                {
+                    Id = 2, FirstName = "Jan", LastName = "Kowalski", Email = "jan.kowalski@example.com", 
+                    Password = "12345", PhoneNumber = 333333333, Pesel = 343545425, InsuranceNumber = 43234545,
+                    Plan = Plan.Standard
+                },
+                new Patient
+                {
+                    Id = 3, FirstName = "Adam", LastName = "Małysz", Email = "a.małysz@example.com", Password = "12345",
+                    PhoneNumber = 454656323, Pesel = 343235445, InsuranceNumber = 3435422, Plan = Plan.Premium
+                }
             );
         });
 
@@ -124,6 +126,15 @@ public class Repository : DbContext
                 .HasForeignKey(e => e.IdConsultation)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Consultation_Recommendations");
+
+            modelBuilder.Entity<Recommendations>().HasData(
+                new Recommendations {Id = 1, DrugDosage = "3x apap noc w dzień", IdPatient = 3, IdConsultation = 1},
+                new Recommendations {Id = 2, DrugDosage = "", IdPatient = 3, IdConsultation = 2},
+                new Recommendations {Id = 3, DrugDosage = "", IdPatient = 3, IdConsultation = 3},
+                new Recommendations {Id = 4, DrugDosage = "", IdPatient = 3, IdConsultation = 4},
+                new Recommendations {Id = 5, DrugDosage = "", IdPatient = 3, IdConsultation = 5}
+                    
+            );
         });
 
         modelBuilder.Entity<Recommendation>(entity =>
@@ -138,6 +149,10 @@ public class Repository : DbContext
                 .HasForeignKey(e => e.IdRecommendations)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Recommendations_Recommendation");
+            modelBuilder.Entity<Recommendation>().HasData(
+                new Recommendation {Id = 1, IdRecommendations = 1, Text = "Pić tylko wodę Fidżi"},
+                new Recommendation {Id = 2, IdRecommendations = 1, Text = "Chodzić spać przed 21:37"}
+            );
         });
 
         modelBuilder.Entity<Address>(entity =>
@@ -155,6 +170,11 @@ public class Repository : DbContext
                 .HasForeignKey(e => e.IdPatient)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Patient_Address");
+
+            modelBuilder.Entity<Address>().HasData(
+                new Address {Id = 1, Street = "Aleje Jerozolimskie", City = "Warszawa", PostalCode = "00-116", Country = "Polska", IdPatient = 2},
+                new Address {Id = 2, Street = "Nowy Świat", City = "Warszawa", PostalCode = "00-116", Country = "Polska", IdPatient = 3}
+            );
         });
 
         modelBuilder.Entity<Doctor>(entity =>
@@ -162,13 +182,18 @@ public class Repository : DbContext
             entity.ToTable("Doctor");
             entity.Property(e => e.LicenseNumber);
             entity.Property(e => e.BaseSalary).HasDefaultValue(8000m);
-            
+
             modelBuilder.Entity<Doctor>().HasData(
-                new Doctor { Id = 11, FirstName = "Kamil", LastName = "Lekarz", Email = "kamil@example.com", Password = "password", LicenseNumber = 54546565, BaseSalary = 10000m },
-                new Doctor { Id = 12, FirstName = "Lena", LastName = "Medycyna", Email = "lena@example.com", Password = "password", LicenseNumber = 43554545, BaseSalary = 12000m },
-                new Doctor { Id = 13, FirstName = "Marek", LastName = "Chirurg", Email = "marek@example.com", Password = "password", LicenseNumber = 43545456, BaseSalary = 15000m },
-                new Doctor { Id = 14, FirstName = "Natalia", LastName = "Specjalista", Email = "natalia@example.com", Password = "password", LicenseNumber = 4546466, BaseSalary = 13000m },
-                new Doctor { Id = 15, FirstName = "Oskar", LastName = "Ortopeda", Email = "oskar@example.com", Password = "password", LicenseNumber = 45464664, BaseSalary = 14000m }
+                new Doctor
+                {
+                    Id = 4, FirstName = "Wojciech", LastName = "Wojciechowski", Email = "w.wojciechowski@hipokrates.com", Password = "12345",
+                    LicenseNumber = 333454, BaseSalary = 8000m
+                },
+                new Doctor
+                {
+                    Id = 5, FirstName = "Roman", LastName = "Romanowski", Email = "r.romanowski@hipokrates.com", Password = "12345",
+                    LicenseNumber = 346765, BaseSalary = 8000m
+                }
             );
         });
 
@@ -187,6 +212,11 @@ public class Repository : DbContext
                 .WithMany(e => e.SubstanceMedicaments)
                 .HasForeignKey(e => e.IdSubstance)
                 .HasConstraintName("Substance_SubstanceMedicament");
+
+            modelBuilder.Entity<SubstanceMedicament>().HasData(
+                new SubstanceMedicament {IdMedicament = 1, IdSubstance = 1},
+                new SubstanceMedicament {IdMedicament = 2, IdSubstance = 2}
+            );
         });
 
         modelBuilder.Entity<Substance>(entity =>
@@ -194,6 +224,13 @@ public class Repository : DbContext
             entity.HasKey(e => new { e.Id }).HasName("Substance_pk");
             entity.ToTable("Substance");
             entity.Property(e => e.Name);
+
+            modelBuilder.Entity<Substance>().HasData(
+                new Substance {Id = 1, Name = "Ibuprofen"},
+                new Substance {Id = 2, Name  = "Paracetamol"},
+                new Substance {Id = 3, Name = "Ketoprofen"}
+                
+            );
         });
 
         modelBuilder.Entity<Specialization>(entity =>
@@ -208,6 +245,11 @@ public class Repository : DbContext
                 .HasForeignKey(e => e.IdDoctor)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("Doctor_Specializaton");
+
+            modelBuilder.Entity<Specialization>().HasData(
+                new Specialization {Id = 1, Name = "Internista", IdDoctor = 4},
+                new Specialization {Id = 2, Name = "Laryngolog", IdDoctor = 5}
+            );
         });
 
         modelBuilder.Entity<Service>(entity =>
@@ -216,6 +258,11 @@ public class Repository : DbContext
             entity.ToTable("Service");
             entity.Property(e => e.Type);
             entity.Property(e => e.Plan).HasConversion<string>();
+
+            modelBuilder.Entity<Service>().HasData(
+                new Service {Id = 1, Name = "Konsultacja internisty", Plan = Plan.Standard, Type = "Konsultacja"},
+                new Service {Id = 2, Name = "Konsultacja laryngoloda", Plan = Plan.Standard, Type = "Konsultacja"}
+            );
         });
 
         modelBuilder.Entity<Room>(entity =>
@@ -224,6 +271,11 @@ public class Repository : DbContext
             entity.ToTable("Room");
             entity.Property(e => e.RoomNumber);
             entity.Property(e => e.FloorNumber);
+
+            modelBuilder.Entity<Room>().HasData(
+                new Room {Id = 1, RoomNumber = 101, FloorNumber = 1},
+                new Room {Id = 2, RoomNumber = 102, FloorNumber = 1}
+            );
         });
 
         modelBuilder.Entity<PrescriptionMedicament>(entity =>
@@ -275,6 +327,11 @@ public class Repository : DbContext
             entity.Property(e => e.Name);
             entity.Property(e => e.Producer);
             entity.Property(e => e.Description);
+
+            modelBuilder.Entity<Medicament>().HasData(
+                new Medicament {Id = 1, Name = "Apap", Producer ="Polfarma", Description = "Lek przeciwbólowy"},
+                new Medicament {Id = 2, Name = "Ibuprom", Producer = "Polfarma", Description = "Lek przeciwbólowy"}
+            );
         });
 
         modelBuilder.Entity<MedicalExam>(entity =>
@@ -284,11 +341,16 @@ public class Repository : DbContext
             entity.Property(e => e.Name);
             entity.Property(e => e.Type);
             entity.Property(e => e.Plan).HasConversion<string>();
+
+            modelBuilder.Entity<MedicalExam>().HasData(
+                new MedicalExam {Id = 1, Name = "Morfologia krwi", Type = "Badania krwi", Plan = Plan.Standard}
+            );
         });
 
         modelBuilder.Entity<Consultation>(entity =>
         {
             entity.HasKey(e => new { e.Id }).HasName("Consultation_pk");
+            entity.ToTable("Consultation");
             entity.Property(e => e.Status).HasConversion<string>();
             entity.Property(e => e.Date);
             entity.Property(e => e.Time);
@@ -311,6 +373,20 @@ public class Repository : DbContext
                 .HasForeignKey(e => e.IdDoctor)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("Doctor_Consultation");
+
+            entity.HasOne(e => e.Patient)
+                .WithMany(e => e.Consultations)
+                .HasForeignKey(e => e.IdPatient)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("Patient_Consultation");
+
+            modelBuilder.Entity<Consultation>().HasData(
+                new Consultation {Id = 1, Status = Status.Finished, Date = DateTime.ParseExact("11.07.2023","dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture), Time = TimeSpan.Parse("12:00"), IdRoom = 1, IdService = 1, IdDoctor = 4, IdPatient = 3},
+                new Consultation {Id = 2, Status = Status.Planned, Date = DateTime.ParseExact("12.09.2023","dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture), Time = TimeSpan.Parse("15:30"), IdRoom = 1, IdService = 1, IdDoctor = 4, IdPatient = 3},
+                new Consultation {Id = 3, Status = Status.Canceled, Date = DateTime.ParseExact("12.05.2023","dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture), Time = TimeSpan.Parse("8:45"), IdRoom = 1, IdService = 1, IdDoctor = 4, IdPatient = 3},
+                new Consultation {Id = 4, Status = Status.Registered, Date = DateTime.ParseExact("11.04.2024","dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture), Time = TimeSpan.Parse("11:00"), IdRoom = 1, IdService = 1, IdDoctor = 4, IdPatient = 3},
+                new Consultation {Id = 5, Status = Status.Planned, Date = DateTime.ParseExact("30.09.2023","dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture), Time = TimeSpan.Parse("16:00"), IdRoom = 1, IdService = 1, IdDoctor = 4, IdPatient = 3}
+            );
         });
     }
 

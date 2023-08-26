@@ -10,6 +10,8 @@ public class Consultation
     public virtual Service Service { get; set; }
     public int IdDoctor { get; set; }
     public virtual Doctor Doctor { get; set; }
+    public int IdPatient { get; set; }
+    public virtual Patient Patient { get; set; }
     public Status Status { get; set; }
     public DateTime Date { get; set; }
     public TimeSpan Time { get; set; }

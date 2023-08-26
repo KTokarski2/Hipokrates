@@ -1,0 +1,27 @@
+@model Hipokrates.DTOs.Patient.ConsultationDTO
+
+
+@{
+    Layout = "_Layout";
+}
+
+<main>
+    <div class="details-div">
+        <div class="header-div">
+            Konsultacja
+        </div>
+        <div class="details">
+            <input type="text" value="@Model.ServiceName" class="form-input" disabled>
+            <input type="text" value="Piętro: @Model.Floor, Sala: @Model.Room" class="form-input" disabled>
+            <input type="text" value="@Model.Date" class="form-input" disabled>
+            <input type="text" value="@Model.Time" class="form-input" disabled>
+            <input type="text" value="@Model.Status" class="form-input" disabled>
+        </div>
+        @{
+            if (Model.Status.Equals("Registered") || Model.Status.Equals("Planned"))
+            {
+                <button class="header-button custom-button-properties">Odwołaj konsultację</button>
+            }
+        }
+    </div>
+</main>

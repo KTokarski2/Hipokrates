@@ -1,18 +1,51 @@
-@model TModel
+@using Microsoft.AspNetCore.Http
 
 @{
-    Layout = null;
+    ViewBag.Pesel = Context.Session.GetString("Pesel");
+    ViewBag.User = Context.Session.GetString("User");
 }
-
 <!DOCTYPE html>
-
-<html>
+<html lang="pl-PL">
 <head>
-    <title>title</title>
+    <meta charset="UTF-8">
+    <meta contentType="text/html"; charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+    <link rel="icon" href="@Url.Content("~/assets/logo.png")" type="image/icon type">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>Hipokrates</title>
 </head>
 <body>
-<div>
-      
-</div>
+<header>
+    <div class="header-left">
+        <a href="@Url.Action("Index", "Home")"><img id="system-logo" src="@Url.Content("~/assets/logo.png")" alt="system-logo" class="logo"></a>
+        <h1 class="page-title">Hipokrates</h1>
+    </div>
+    @{
+        if (ViewBag.Pesel != null)
+        {
+            <div class="header-right">
+                <p>Zalogowano jako: @ViewBag.User</p>
+                <p><a class="header-button" href="@Url.Action("Logout", "Login")">Wyloguj się</a></p>
+                <p><a class="header-button" href="@Url.Action("Index", "Patient")">Historia wizyt</a></p>
+            </div>
+        }
+        else
+        {
+            <div class="header-right">
+                <p><a class="header-button" href="@Url.Action("Index", "Login")">Zaloguj się</a></p>
+                <p><a class="header-button" href="">Dla lekarza</a></p>
+            </div>
+        }
+    }
+</header>
+<nav>
+    <ul>
+        <li><a href="">Usługi</a></li>
+        <li><a href="">Badania</a></li>
+        <li><a href="">O nas</a></li>
+    </ul>
+</nav>
+@RenderBody()
 </body>
 </html>

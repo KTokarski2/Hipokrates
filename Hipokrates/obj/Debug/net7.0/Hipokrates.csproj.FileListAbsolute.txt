@@ -21,9 +21,7 @@
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/staticwebassets.pack.json
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/staticwebassets.build.json
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/staticwebassets.development.json
-/home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/scopedcss/bundle/Hipokrates.styles.css
-/home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/scopedcss/projectbundle/Hipokrates.bundle.scp.css
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/Hipokrates.dll
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/refint/Hipokrates.dll
 /home/fedora/RiderProjects/Hipokrates/Hipokrates/obj/Debug/net7.0/Hipokrates.pdb

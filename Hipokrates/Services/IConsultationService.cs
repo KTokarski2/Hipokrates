@@ -1,6 +1,9 @@
+using Hipokrates.Models;
+
 namespace Hipokrates.Services.AuthenticationService;
 
-public class IConsultationService
+public interface IConsultationService
 {
-    
+    public Task<List<Service>> GetServices();
+
 }

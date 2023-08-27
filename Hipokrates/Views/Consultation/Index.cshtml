@@ -5,19 +5,20 @@
 }
 <main>
     <div class="login-form-div">
-        <form class="login-form" method="post" action="">
-            <select class="form-input" name="Service" id="Service">
-                <option value="" selected> -- Wybierz usługę -- </option>
-                @{
-                    for (int i = 0; i < Model.Count(); i++)
-                    {
-                        <option value="@i">@Model[i].Name</option>
+        @using (Html.BeginForm("ChooseService", "Consultation", FormMethod.Get, new {@class = "login-form"}))
+            {
+                <select class="form-input" name="serviceId" id="Service">
+                    <option value="" selected> -- Wybierz usługę -- </option>
+                    @{
+                        for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <option value="@i">@Model[i].Name</option>
+                        }
                     }
-                }
-            </select>
-            <div class="form-buttons">
-                <input class="form-button-login" type="submit" value="Zaloguj się">
-            </div>
-        </form>
+                </select>
+                <div class="form-buttons">
+                    <input type="submit" value="Przejdź do usługi" class="form-button-login" />
+                </div>
+            }
     </div>
 </main>

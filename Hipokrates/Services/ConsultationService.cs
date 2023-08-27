@@ -1,3 +1,4 @@
+using Hipokrates.DTOs.Consultation;
 using Hipokrates.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,5 +16,20 @@ public class ConsultationService : IConsultationService
     public async Task<List<Service>> GetServices()
     {
         return await _repository.Services.ToListAsync();
+    }
+
+    public async Task RegisterConsultation(RegisterConsultationDTO dto)
+    {
+        var consultation = new Consultation
+        {
+            Date = dto.Date,
+            Time = dto.Time,
+            IdService = dto.ServiceId + 1,
+            IdPatient = dto.PatientId,
+            Status = Status.Registered
+        };
+
+        await _repository.AddAsync(consultation);
+        await _repository.SaveChangesAsync();
     }
 }

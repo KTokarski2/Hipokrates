@@ -1,0 +1,19 @@
+@model Hipokrates.DTOs.Consultation.PassIdDTO
+
+@{
+    Layout = "_Layout";
+}
+
+<main>
+    <div class="login-form-div">
+        <form class="login-form" method="post" action="@Url.Action("RegisterConsultation", "Consultation")">
+            <input type="hidden" name="ServiceId" value="@Model.ServiceId">
+            <input type="hidden" name="PatientId" value="@Model.PatientId">
+            <input class="form-input" type="date" name="Date" id="date" placeholder="" required>
+            <input class="form-input" type="time" name="Time" id="time" placeholder="" required>
+            <div class="form-buttons">
+                <input class="form-button-login" type="submit" value="Umów konsultację">
+            </div>
+        </form>
+    </div>
+</main>

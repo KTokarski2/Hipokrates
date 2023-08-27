@@ -3,6 +3,7 @@ using System;
 using Hipokrates.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hipokrates.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20230827004546_AllowConsultationsNullDoctorReference")]
+    partial class AllowConsultationsNullDoctorReference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +90,7 @@ namespace Hipokrates.Migrations
                     b.Property<int>("IdPatient")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IdRoom")
+                    b.Property<int>("IdRoom")
                         .HasColumnType("int");
 
                     b.Property<int>("IdService")
@@ -754,6 +757,7 @@ namespace Hipokrates.Migrations
                         .WithMany("Consultations")
                         .HasForeignKey("IdRoom")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
                         .HasConstraintName("Room_Consultation");
 
                     b.HasOne("Hipokrates.Models.Service", "Service")

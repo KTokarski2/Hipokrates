@@ -26,6 +26,7 @@ public class LoginController : Controller
         if (user != null)
         {
             HttpContext.Session.SetString("Pesel", user.Pesel.ToString());
+            HttpContext.Session.SetString("PatientId", user.Id.ToString());
             var userString = user.FirstName + " " + user.LastName;
             HttpContext.Session.SetString("User", userString);
             return RedirectToAction("Index", "Home");
@@ -39,6 +40,7 @@ public class LoginController : Controller
     {
         HttpContext.Session.Remove("Pesel");
         HttpContext.Session.Remove("User");
+        HttpContext.Session.Remove("Id");
         return RedirectToAction("Index", "Home");
     }
 }

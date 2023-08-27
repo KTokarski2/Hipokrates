@@ -3,6 +3,8 @@
 @{
     ViewBag.Pesel = Context.Session.GetString("Pesel");
     ViewBag.User = Context.Session.GetString("User");
+    ViewBag.DoctorId = Context.Session.GetString("DoctorId");
+    ViewBag.UserClass = Context.Session.GetString("Class");
 }
 <!DOCTYPE html>
 <html lang="pl-PL">
@@ -22,19 +24,26 @@
         <h1 class="page-title">Hipokrates</h1>
     </div>
     @{
-        if (ViewBag.Pesel != null)
+        if (ViewBag.UserClass == null)
+        {
+            <div class="header-right">
+                <p><a class="header-button" href="@Url.Action("IndexPatient", "Login")">Zaloguj się</a></p>
+                <p><a class="header-button" href="@Url.Action("IndexDoctor", "Login")">Dla lekarza</a></p>
+            </div>
+        }else if (ViewBag.UserClass.Equals("Doctor"))
         {
             <div class="header-right">
                 <p>Zalogowano jako: @ViewBag.User</p>
-                <p><a class="header-button" href="@Url.Action("Logout", "Login")">Wyloguj się</a></p>
-                <p><a class="header-button" href="@Url.Action("Index", "Patient")">Historia wizyt</a></p>
+                <p><a class="header-button" href="@Url.Action("LogoutDoctor", "Login")">Wyloguj się</a></p>
+                <p><a class="header-button" href="@Url.Action("Index", "Doctor")">Konsultacje</a></p>
             </div>
-        }
-        else
+        }else if (ViewBag.UserClass.Equals("Patient"))
         {
+            
             <div class="header-right">
-                <p><a class="header-button" href="@Url.Action("Index", "Login")">Zaloguj się</a></p>
-                <p><a class="header-button" href="">Dla lekarza</a></p>
+                <p>Zalogowano jako: @ViewBag.User</p>
+                <p><a class="header-button" href="@Url.Action("LogoutPatient", "Login")">Wyloguj się</a></p>
+                <p><a class="header-button" href="@Url.Action("Index", "Patient")">Historia wizyt</a></p>
             </div>
         }
     }

@@ -17,6 +17,7 @@ public class HomeController : Controller
     {
         ViewBag.Pesel= HttpContext.Session.GetString("Pesel");
         ViewBag.User = HttpContext.Session.GetString("User");
+        ViewBag.UserClass = HttpContext.Session.GetString("Class");
         return View();
     }
 

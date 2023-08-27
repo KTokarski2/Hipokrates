@@ -1,0 +1,14 @@
+@{
+    Layout = "_Layout";
+}
+<main>
+    <div class="login-form-div">
+        <form class="login-form" method="post" action="@Url.Action("LoginDoctor", "Login")">
+            <input class="form-input" type="email" name="Email" id="email" placeholder="adres email" required>
+            <input class="form-input" type="password" name="Password" id="password" placeholder="hasło" required>
+            <div class="form-buttons">
+                <input class="form-button-login" type="submit" value="Zaloguj się">
+            </div>
+        </form>
+    </div>
+</main>

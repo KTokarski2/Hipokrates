@@ -15,10 +15,16 @@ public class AuthenticationService : IAuthenticationService
     }
 
 
-    public async Task<Patient?> LogIn(LoginDTO dto)
+    public async Task<Patient?> LogInPatient(LoginDTO dto)
     {
         return await _repository.Patients.FirstOrDefaultAsync(u =>
             u.Email.Equals(dto.Email) && u.Password.Equals(dto.Password));
     }
-    
+
+    public async Task<Doctor?> LogInDoctor(LoginDTO dto)
+    {
+        return await _repository.Doctors.FirstOrDefaultAsync(d =>
+            d.Email.Equals(dto.Email) && d.Password.Equals(dto.Password));
+    }
+
 }

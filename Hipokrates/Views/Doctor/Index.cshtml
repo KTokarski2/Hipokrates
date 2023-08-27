@@ -1,0 +1,32 @@
+@model List<Hipokrates.DTOs.Patient.ConsultationDTO>
+
+@{
+    Layout = "_Layout";
+}
+<main>
+    <div class="table-container"> <!-- login-from-div -->
+        <table>
+            <thead>
+            <tr>
+                <th>Usługa</th>
+                <th>Data</th>
+                <th>Godzina</th>
+                <th>Szczegóły</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                foreach (var con in Model)
+                {
+                    <tr>
+                        <td>@con.ServiceName</td>
+                        <td>@con.Date</td>
+                        <td>@con.Time</td>
+                        <td><a href="@Url.Action("", "", new {Id = con.Id})" class="icon-link"><span class="material-symbols-outlined">info</span></a></td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</main>

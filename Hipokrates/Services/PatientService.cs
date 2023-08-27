@@ -24,7 +24,7 @@ public class PatientService : IPatientService
                 Date = c.Date,
                 Time = c.Time
             })
-            .OrderBy(c => c.Date)
+            .OrderByDescending(c => c.Date)
             .ToListAsync();
     }
 

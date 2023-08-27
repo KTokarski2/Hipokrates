@@ -5,5 +5,7 @@ namespace Hipokrates.Services.AuthenticationService;
 
 public interface IAuthenticationService
 {
-    public Task<Patient?> LogIn(LoginDTO dto);
+    public Task<Patient?> LogInPatient(LoginDTO dto);
+
+    public Task<Doctor?> LogInDoctor(LoginDTO dto);
 }

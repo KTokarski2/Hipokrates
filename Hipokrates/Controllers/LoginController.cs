@@ -15,20 +15,26 @@ public class LoginController : Controller
         _service = service;
     }
 
-    public IActionResult Index()
+    public IActionResult IndexPatient()
     {
-        return View("Login");
+        return View("LoginPatient");
     }
 
-    public async Task<IActionResult> Login(LoginDTO loginDto)
+    public IActionResult IndexDoctor()
     {
-        var user = await _service.LogIn(loginDto);
+        return View("LoginDoctor");
+    }
+
+    public async Task<IActionResult> LoginPatient(LoginDTO loginDto)
+    {
+        var user = await _service.LogInPatient(loginDto);
         if (user != null)
         {
             HttpContext.Session.SetString("Pesel", user.Pesel.ToString());
             HttpContext.Session.SetString("PatientId", user.Id.ToString());
             var userString = user.FirstName + " " + user.LastName;
             HttpContext.Session.SetString("User", userString);
+            HttpContext.Session.SetString("Class", "Patient");
             return RedirectToAction("Index", "Home");
         }
 
@@ -36,11 +42,36 @@ public class LoginController : Controller
         return RedirectToAction("Index", "Login", message);
     }
 
-    public IActionResult Logout()
+    public async Task<IActionResult> LoginDoctor(LoginDTO loginDto)
+    {
+        var doctor = await _service.LogInDoctor(loginDto);
+        if (doctor != null)
+        {
+            HttpContext.Session.SetString("DoctorId", doctor.Id.ToString());
+            var userString = "dr. " + doctor.FirstName + " " + doctor.LastName;
+            HttpContext.Session.SetString("User", userString);
+            HttpContext.Session.SetString("Class", "Doctor");
+            return RedirectToAction("Index", "Home");
+        }
+
+        string message = "Bad login or password";
+        return RedirectToAction("Index", "Login", message);
+    }
+
+    public IActionResult LogoutPatient()
     {
         HttpContext.Session.Remove("Pesel");
         HttpContext.Session.Remove("User");
         HttpContext.Session.Remove("Id");
+        HttpContext.Session.Remove("Class");
+        return RedirectToAction("Index", "Home");
+    }
+    
+    public IActionResult LogoutDoctor()
+    {
+        HttpContext.Session.Remove("DoctorId");
+        HttpContext.Session.Remove("User");
+        HttpContext.Session.Remove("Class");
         return RedirectToAction("Index", "Home");
     }
 }

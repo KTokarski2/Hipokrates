@@ -83,7 +83,7 @@ public class Repository : DbContext
             entity.HasKey(e => new { e.Id }).HasName("MedicalReferral_pk");
             entity.ToTable("MedicalReferral");
             entity.Property(e => e.DateOfIssue);
-            entity.Property(e => e.Description);
+            entity.Property(e => e.Description).HasMaxLength(200);
 
             entity
                 .HasOne(e => e.Doctor)
@@ -111,7 +111,7 @@ public class Repository : DbContext
         {
             entity.HasKey(e => new {e.Id}).HasName("Recommendations_pk");
             entity.ToTable("Recommendations");
-            entity.Property(e => e.DrugDosage);
+            entity.Property(e => e.DrugDosage).HasMaxLength(500);
 
             entity
                 .HasOne(e => e.Patient)
@@ -141,7 +141,7 @@ public class Repository : DbContext
         {
             entity.HasKey(e => new { e.Id }).HasName("Recommendation_pk");
             entity.ToTable("Recommendation");
-            entity.Property(e => e.Text);
+            entity.Property(e => e.Text).HasMaxLength(500);
 
             entity
                 .HasOne(e => e.Recommendations)

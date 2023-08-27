@@ -4,21 +4,33 @@
     Layout = "_Layout";
 }
 <main>
-    <div class="login-form-div">
-        @using (Html.BeginForm("ChooseService", "Consultation", FormMethod.Get, new {@class = "login-form"}))
-            {
-                <select class="form-input" name="serviceId" id="Service">
-                    <option value="" selected> -- Wybierz usługę -- </option>
-                    @{
-                        for (int i = 0; i < Model.Count(); i++)
-                        {
-                            <option value="@i">@Model[i].Name</option>
+    @{
+        if (Model.Count == 0)
+        {
+            <div class="consultation-div">
+                <h1 class="consultation-text">Brak usług w systemie</h1>
+                <p><a class="consultation-button" href="@Url.Action("Index", "Home")">OK</a></p>
+            </div>
+        }
+        else
+        {
+            <div class="login-form-div">
+                @using (Html.BeginForm("ChooseService", "Consultation", FormMethod.Get, new { @class = "login-form" }))
+                {
+                    <select class="form-input" name="serviceId" id="Service">
+                        <option value="" selected> -- Wybierz usługę -- </option>
+                        @{
+                            for (int i = 0; i < Model.Count(); i++)
+                            {
+                                <option value="@i">@Model[i].Name</option>
+                            }
                         }
-                    }
-                </select>
-                <div class="form-buttons">
-                    <input type="submit" value="Przejdź do usługi" class="form-button-login" />
-                </div>
-            }
-    </div>
+                    </select>
+                    <div class="form-buttons">
+                        <input type="submit" value="Przejdź do usługi" class="form-button-login"/>
+                    </div>
+                }
+            </div>
+        }
+    }
 </main>

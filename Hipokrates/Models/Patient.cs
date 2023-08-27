@@ -11,24 +11,5 @@ public class Patient : User
     public int Pesel { get; set; }
     public int InsuranceNumber { get; set; }
     public Plan Plan { get; set; }
-
-    public void CancelConsultation(DateTime date, TimeSpan time)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DownloadPrescription(Prescription prescription)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DownloadConsultationReport(Consultation consultation)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AskConsultation(String question)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

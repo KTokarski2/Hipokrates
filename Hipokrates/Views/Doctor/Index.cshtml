@@ -20,7 +20,7 @@
                 {
                     <tr>
                         <td>@con.ServiceName</td>
-                        <td>@con.Date</td>
+                        <td>@con.Date.ToString("d")</td>
                         <td>@con.Time</td>
                         <td><a href="@Url.Action("Details", "Doctor", new {Id = con.Id})" class="icon-link"><span class="material-symbols-outlined">info</span></a></td>
                     </tr>

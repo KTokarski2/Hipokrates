@@ -35,12 +35,28 @@ public class PatientService : IPatientService
             {
                 Id = c.Id,
                 ServiceName = c.Service.Name,
-                Room = c.Room.RoomNumber,
-                Floor = c.Room.FloorNumber,
+                Room = c.Room.RoomNumber.ToString(),
+                Floor = c.Room.FloorNumber.ToString(),
                 Status = c.Status.ToString(),
                 Date = c.Date,
                 Time = c.Time
             })
             .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public async Task CancelConsultation(int id)
+    {
+        var consultation = await _repository.Consultations.FirstOrDefaultAsync(c => c.Id == id);
+        consultation.Status = Status.Canceled;
+        await _repository.SaveChangesAsync();
+    }
+
+    public async Task UpdateDateAndTime(ChangeDateDTO dto)
+    {
+        var consultation = await _repository.Consultations.FirstOrDefaultAsync(c => c.Id == dto.Id);
+        consultation.Date = dto.Date;
+        consultation.Time = dto.Time;
+        consultation.Status = Status.Registered;
+        await _repository.SaveChangesAsync();
     }
 }

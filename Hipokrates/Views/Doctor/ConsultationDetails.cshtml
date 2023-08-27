@@ -1,0 +1,49 @@
+@using Hipokrates.DTOs.Doctor
+@model Hipokrates.DTOs.Patient.ConsultationDTO
+
+@{
+    Layout = "_Layout";
+    var rooms = TempData["Rooms"] as List<RoomsDTO>;
+}
+
+<main>
+    <div class="details-div">
+        <div class="header-div">
+            Konsultacja
+        </div>
+        <div class="details">
+            <input type="text" value="@Model.ServiceName" class="form-input" disabled>
+            <input type="text" value="Piętro: @Model.Floor, Sala: @Model.Room" class="form-input" disabled>
+            <input type="text" value="@Model.Date" class="form-input" disabled>
+            <input type="text" value="@Model.Time" class="form-input" disabled>
+            <input type="text" value="@Model.Status" class="form-input" disabled>
+        </div>
+        @{
+            if (Model.Status.Equals("Registered"))
+            {
+                <a href="@Url.Action("AcceptConsultation", "Doctor", new {Id = @Model.Id})" class="header-button custom-button-properties">Zaakceptuj</a>
+                <a href="@Url.Action("RefuseConsultation", "Doctor", new {Id = @Model.Id})" class="header-button custom-button-properties">Odrzuć</a>
+            }else if (Model.Status.Equals("Planned"))
+            {
+                <a href="@Url.Action("CancelConsultation", "Doctor", new {Id = @Model.Id})" class="header-button custom-button-properties">Odwołaj konsultację</a>
+                <p>Przydziel salę</p>
+                @using (Html.BeginForm("AssignRoom", "Doctor", FormMethod.Get, new { @class = "login-form" }))
+                {
+                    <input type="hidden" name="consultationId" value="@Model.Id">
+                    <select class="form-input" name="roomId" id="Room">
+                        <option value="" selected> -- Wybierz salę -- </option>
+                        @{
+                            for (int i = 0; i < rooms.Count; i++)
+                            {
+                                <option value="@i">@rooms[i].RoomNumber</option>
+                            }
+                        }
+                    </select>
+                    <div class="form-buttons">
+                        <input class="form-button-login" type="submit" value="Zaakceptuj">
+                    </div>
+                }
+            }
+        }
+    </div>
+</main>

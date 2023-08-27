@@ -20,7 +20,18 @@
         @{
             if (Model.Status.Equals("Registered") || Model.Status.Equals("Planned"))
             {
-                <button class="header-button custom-button-properties">Odwołaj konsultację</button>
+                <a href="@Url.Action("CancelConsultation", "Patient", new {Id = @Model.Id})" class="header-button custom-button-properties">Odwołaj konsultację</a>
+            }else if (Model.Status.Equals("Refused"))
+            {
+                <p>Czy chcesz podać nową datę?</p>
+                <form class="login-form" method="post" action="@Url.Action("UpdateDateAndTime", "Patient")">
+                    <input type="hidden" name="Id" id="id" value="@Model.Id">
+                    <input class="form-input" type="date" name="Date" id="date" placeholder="" required>
+                    <input class="form-input" type="time" name="Time" id="time" placeholder="" required>
+                    <div class="form-buttons">
+                        <input class="form-button-login" type="submit" value="Zaakceptuj">
+                    </div>
+                </form>
             }
         }
     </div>

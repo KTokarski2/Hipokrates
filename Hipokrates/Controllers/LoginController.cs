@@ -38,8 +38,7 @@ public class LoginController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        string message = "Bad login or password";
-        return RedirectToAction("Index", "Login", message);
+        return View("BadLogin");
     }
 
     public async Task<IActionResult> LoginDoctor(LoginDTO loginDto)
@@ -54,8 +53,7 @@ public class LoginController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        string message = "Bad login or password";
-        return RedirectToAction("Index", "Login", message);
+        return View("BadLogin");
     }
 
     public IActionResult LogoutPatient()

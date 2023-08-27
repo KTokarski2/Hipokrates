@@ -33,6 +33,5 @@ public class ConsultationController : Controller
         var viewPath = "~/Views/Home/Index.cshtml";
         return View(viewPath);
     }
-
-
+    
 }

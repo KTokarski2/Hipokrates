@@ -25,4 +25,16 @@ public class PatientController : Controller
         var dto = await _service.GetConsultation(Id);
         return View("ConsultationDetails", dto);
     }
+
+    public async Task<IActionResult> CancelConsultation(int Id)
+    {
+        await _service.CancelConsultation(Id);
+        return RedirectToAction("Index", "Patient");
+    }
+
+    public async Task<IActionResult> UpdateDateAndTime(ChangeDateDTO dto)
+    {
+        await _service.UpdateDateAndTime(dto);
+        return RedirectToAction("Index", "Patient");
+    }
 }

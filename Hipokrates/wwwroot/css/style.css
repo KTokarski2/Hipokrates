@@ -176,7 +176,7 @@ main {
 
 table {
     border-collapse: collapse;
-    width: 100%; /* Możesz dostosować szerokość tabeli według potrzeb */
+    width: 100%; 
     text-align: left;
     margin: 20px 0;
     background-color: white;
@@ -193,7 +193,7 @@ table th {
     text-align: center;
 }
 
-/* Jeśli chcesz, aby wiersze były podświetlane przy najechaniu myszą: */
+
 table tr:hover {
     background-color: #52B788;
 }
@@ -203,8 +203,8 @@ table td:last-child {
 }
 
 .icon-link {
-    text-decoration: none; /* Usuwa podkreślenie */
-    color: inherit; /* Używa dziedziczonego koloru tekstu */
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .details-div {
@@ -240,5 +240,10 @@ table td:last-child {
 
 .custom-button-properties {
     margin-bottom: 20px;
+}
+
+.snakeGame {
+    height: 100%;
+    overflow-y: hidden;
 }
 

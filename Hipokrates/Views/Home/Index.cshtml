@@ -5,13 +5,19 @@
 <main>
     <div class="consultation-div">
         @{
-            if (ViewBag.Pesel != null)
+            if (ViewBag.UserClass == null)
             {
                 <h1 class="consultation-text">Mamy miejsce i czas, żeby pomagać.</h1>
-                <p><a class="consultation-button" href="@Url.Action("Index", "Consultation")">Umów konsultację</a></p>
-            }else{
-                <h1 class="consultation-text">Mamy miejsce i czas, żeby pomagać.</h1>
                 <p><a class="consultation-button" href="@Url.Action("Index", "Register")">Umów konsultację</a></p>
+                                                                                                              
+            }else if (ViewBag.UserClass.Equals("Doctor")){
+                
+                <p><a class="consultation-button" href="@Url.Action("", "")">Następna konsultacja</a></p>
+                                                                                                                  
+            }else if (ViewBag.UserClass.Equals("Patient")){
+                
+                <h1 class="consultation-text">Mamy miejsce i czas, żeby pomagać.</h1>
+                <p><a class="consultation-button" href="@Url.Action("Index", "Consultation")">Umów konsultację</a></p>
             }
         }
     </div>
